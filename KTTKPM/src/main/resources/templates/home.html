@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gara Oto</title>
+  <link rel="stylesheet" href="/static/css/home.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <div class="logo" style="text-align: center;">
+      <a href="#">
+        <h1>Hệ Thống Gara Ô Tô</h1>
+      </a>
+    </div>
+  </div>
+</nav>
+<button id="logout-button" style="margin-top: 20px">Đăng Xuất</button>
+
+<div class="container">
+<!--  <h1 style="text-align: center">Hệ Thống Gara Ô Tô</h1>-->
+  <div class="home">
+    <h1 id="welcome-message" style="margin-top: 30px"></h1>
+  </div>
+  <button onclick="redirectToDatLichHen()">Đặt lịch Hẹn</button>
+  <ul id="ListLH"></ul>
+</div>
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close"></span>
+    <h2>Thông tin Lịch Hẹn</h2>
+    <div id="LHInfor"></div>
+    <button id="closeModal">Đóng</button>
+  </div>
+</div>
+<script src="/static/js/home.js"></script>
+<script>
+  function redirectToDatLichHen() {
+    window.location.href = "/lichhen";
+  }
+</script>
+</body>
+</html>
