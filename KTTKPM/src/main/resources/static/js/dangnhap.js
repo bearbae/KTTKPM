@@ -20,7 +20,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
     })
 
         .then(response => {
-            console.log(data) ;
+            // console.log(data) ;
             if (response.status === 401) {
                 throw new Error('Sai tên người dùng hoặc mật khẩu');
             } else if(!response.ok) {
@@ -30,20 +30,26 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
         })
         .then(data => {
             if (data) {
+                console.log(data)
+
                 var kh = {
+                    id: data.taiKhoan.id,
                     hoten: data.hoten,
                     dchi: data.dchi,
-                    sdt: data.sdt
+                    sdt: data.sdt,
+                    vaitro: data.taiKhoan.vaitro
                 };
-            localStorage.setItem('kh', JSON.stringify(kh));
-            window.location.href = "/home";
+                    localStorage.setItem('kh', JSON.stringify(kh));
+                    window.location.href = "/home";
+
+
         } else{
                 alert("Dang nhap khong thanh cong. Vui long thu lai!") ;
             }
         })
         .catch(error => {
-            console.error('Error:', error.message);
-            alert(error.message);
+            console.error('Error:', error);
+
         });
 
 });

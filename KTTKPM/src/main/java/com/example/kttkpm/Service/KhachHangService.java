@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface KhachHangService {
     String taoKhachHang(KhachHangDTO khachHangDTO) ;
 
-    KhachHangDTO  getKhachHangByTaiKhoanId(int id) ;
+    KhachHangDTO  getKhachHangByTaiKhoanId(long id) ;
 
     KhachHangDTO getKhachHangBySdt(String sdt) ;
 

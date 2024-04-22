@@ -25,7 +25,7 @@ public class KhachHangServiceImpl implements KhachHangService {
     }
 
     @Override
-    public KhachHangDTO getKhachHangByTaiKhoanId(int id) {
+    public KhachHangDTO getKhachHangByTaiKhoanId(long id) {
         return khachHangMapper.convertToDTO(khachHangRepository.findKhachHangByTaiKhoanId(id)) ;
     }
 

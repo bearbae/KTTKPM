@@ -4,7 +4,6 @@ document.getElementById("lichhenForm").addEventListener("submit", function(event
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
-
     const LichhenDto = {};
     formData.forEach(function(value, key) {
         LichhenDto[key] = value;

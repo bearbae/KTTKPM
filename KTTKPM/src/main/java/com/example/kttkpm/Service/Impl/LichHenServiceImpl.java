@@ -25,15 +25,12 @@ public class LichHenServiceImpl implements LichHenService {
     private KhachHangService khachHangService  ;
     @Override
     public String datlich(LichHenDTO lichHenDTO) {
-        // Tạo một đối tượng LichHen từ dữ liệu DTO
         LichHen lichHen = new LichHen() ;
         lichHen.setNgay(lichHenDTO.getNgay());
         lichHen.setGio(lichHenDTO.getGio());
         lichHen.setLoinhan(lichHenDTO.getLoinhan());
-        // lay khachhang
         KhachHang x = khachHangRepository.findKhachHangBySdt(lichHenDTO.getSdt()) ;
         lichHen.setKhachHang(x);
-        // Lưu đối tượng LichHen vào cơ sở dữ liệu
         lichHen = taolichhen(lichHen);
         System.out.println(lichHen.getNgay());
         if (lichHen != null) {

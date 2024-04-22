@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface KhachHangRepository extends JpaRepository<KhachHang, Long> {
 
-    KhachHang findKhachHangByTaiKhoanId(int id) ;
+    KhachHang findKhachHangByTaiKhoanId(long id) ;
 
     KhachHang findKhachHangBySdt(String sdt) ;
 

@@ -58,6 +58,11 @@ public class AuthServiceImpl implements AuthService {
         return ktra.orElse(null) ;
     }
 
+    @Override
+    public TaiKhoan getTaiKhoanById(long id) {
+        return taiKhoanRepository.getTaiKhoanById(id);
+    }
+
     // kiem tra tai khoan co trong db
     private Optional<KhachHangDTO> ktraUser(String username, String password){
         // lay tai khoan tu db theo usename

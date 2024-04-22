@@ -23,8 +23,16 @@
   <div class="home">
     <h1 id="welcome-message" style="margin-top: 30px"></h1>
   </div>
-  <button onclick="redirectToDatLichHen()">Đặt lịch Hẹn</button>
+  <div style="display: flex; justify-content: space-around">
+    <button id="khachhang" onclick="redirectToDatLichHen()" style="display: block">Đặt lịch Hẹn</button>
+    <button id="admin" onclick="redirectToNhaCungCap()" style="display: block">Nhập Phụ Tùng</button>
+  </div>
+
+
   <ul id="ListLH"></ul>
+  <ul id="ListHD"></ul>
+
+
 </div>
 <div id="modal" class="modal">
   <div class="modal-content">
@@ -34,11 +42,23 @@
     <button id="closeModal">Đóng</button>
   </div>
 </div>
+<div id="hoadon" class="modal">
+  <div class="hoadon-content">
+    <span class="close"></span>
+    <h2>Thông tin Hoá Đơn</h2>
+    <div id="HDInfor"></div>
+    <button id="closeHoaDon">Đóng</button>
+  </div>
+</div>
 <script src="/static/js/home.js"></script>
 <script>
   function redirectToDatLichHen() {
     window.location.href = "/lichhen";
   }
+  function redirectToNhaCungCap() {
+    window.location.href = "/ncc";
+  }
+
 </script>
 </body>
 </html>

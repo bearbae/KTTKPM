@@ -9,10 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DangNhapDTO {
-    private long id  ;
-    private String username;
-    private String password;
-
+public class HoaDonNhapDTO {
+    private long id ;
+    private long id_tk ;
+    private long id_ncc ;
+    private float thanhtien ;
+    private String ngay ;
 }
-
