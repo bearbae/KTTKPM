@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gara Oto</title>
+  <link rel="stylesheet" href="/static/css/home.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <div class="logo" style="text-align: center;">
+      <a href="#">
+        <h1>Hệ Thống Gara Ô Tô</h1>
+      </a>
+    </div>
+  </div>
+</nav>
+<button id="logout-button" style="margin-top: 20px">Đăng Xuất</button>
+
+<div class="container">
+<!--  <h1 style="text-align: center">Hệ Thống Gara Ô Tô</h1>-->
+  <div class="home">
+    <h1 id="welcome-message" style="margin-top: 30px"></h1>
+  </div>
+  <div style="display: flex; justify-content: space-around">
+    <button id="khachhang" onclick="redirectToDatLichHen()" style="display: block">Đặt lịch Hẹn</button>
+    <button id="admin" onclick="redirectToNhaCungCap()" style="display: block">Nhập Phụ Tùng</button>
+  </div>
+
+
+  <ul id="ListLH"></ul>
+  <ul id="ListHD"></ul>
+
+
+</div>
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close"></span>
+    <h2>Thông tin Lịch Hẹn</h2>
+    <div id="LHInfor"></div>
+    <button id="closeModal">Đóng</button>
+  </div>
+</div>
+<div id="hoadon" class="modal">
+  <div class="hoadon-content">
+    <span class="close"></span>
+    <h2>Thông tin Hoá Đơn</h2>
+    <div id="HDInfor"></div>
+    <button id="closeHoaDon">Đóng</button>
+  </div>
+</div>
+<script src="/static/js/home.js"></script>
+<script>
+  function redirectToDatLichHen() {
+    window.location.href = "/lichhen";
+  }
+  function redirectToNhaCungCap() {
+    window.location.href = "/ncc";
+  }
+
+</script>
+</body>
+</html>

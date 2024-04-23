@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm nhà cung cấp</title>
+    <link rel="stylesheet" href="/static/css/ncc.css">
+</head>
+
+<body>
+<div class="container">
+    <h2 style="text-align: center; font-weight: bold">Tìm nhà cung cấp</h2>
+    <label for="supplierName">Nhập tên nhà cung cấp:</label>
+    <input type="text" id="supplierName" name="supplierName">
+    <button  id="tim">Tìm</button>
+    <button onclick="redirectAdSupplier()">Thêm nhà cung cấp</button>
+
+    <br><br>
+
+    <table id="supplierTable">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Địa chỉ</th>
+            <th>Số điện thoại</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="supplierTableBody">
+
+        </tbody>
+    </table>
+</div>
+<script src="/static/js/ncc.js"></script>
+<script>
+    // function redirectAdSupplier(){
+    //     window.location.href("/addncc") ;
+    // }
+    function redirectAdSupplier() {
+        window.location.href = "/addncc";
+    }
+</script>
+</body>
+
+</html>

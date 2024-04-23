@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hóa Đơn Nhập</title>
+  <link rel="stylesheet" href="/static/css/hoadonnhap.css">
+</head>
+
+<body>
+<div class="container">
+  <h2 style="text-align: center; font-size: 50px">Hóa Đơn Nhập</h2>
+  <div class="info">
+    <p><label>Tên nhà cung cấp:</label><span id="ten"></span></p>
+    <p><label>Số Điện Thoại:</label><span id="sdt"></span></p>
+    <p><label>Địa Chỉ:</label><span id="dchi"></span></p>
+    <p><label>Ngày Nhập:</label><span id="date"></span></p>
+  </div>
+  <div style="display: flex; justify-content: space-between">
+    <button  id="nhapphutung">Tìm Phụ Tùng</button>
+    <button  id="taohoadon">Tạo Hóa Đơn</button>
+  </div>
+
+  <table id="hoadontable">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Tên Phụ Tùng</th>
+      <th>Mô Tả</th>
+      <th>Số Lượng</th>
+      <th>Giá($)</th>
+    </tr>
+    </thead>
+    <tbody id="hoadonbody"></tbody>
+  </table>
+
+  <p ><label>Thành Tiền:  </label><span id="total"> </span>$</p>
+  <div style="display: flex; justify-content: space-around"><button  id="oke">Xác nhận</button></div>
+  <div style="display: flex; justify-content: space-around"><button  id="huy">Hủy</button></div>
+
+
+
+</div>
+<script src="/static/js/hoadonnhap.js"></script>
+<script>
+
+</script>
+</body>
+
+
+</html>
