@@ -7,8 +7,10 @@ import com.example.kttkpm.dto.HoaDonNhapDTO;
 import java.util.List;
 
 public interface HoaDonNHapService {
-    String taoHoaDon(HoaDonNhapDTO hoaDonNhapDTO)  ;
+    HoaDonNhapDTO taoHoaDon(HoaDonNhapDTO hoaDonNhapDTO)  ;
 
+
+    List<HoaDonNhap> findListHDNById_tk(long id) ;
 
     HoaDonNhap findHDNById(long id) ;
     HoaDonNhap getHDNId_Tk(long id_tk) ;

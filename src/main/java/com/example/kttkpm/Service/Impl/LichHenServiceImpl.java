@@ -7,6 +7,7 @@ import com.example.kttkpm.Repository.KhachHangRepository;
 import com.example.kttkpm.Repository.LichHenRepository;
 import com.example.kttkpm.Service.KhachHangService;
 import com.example.kttkpm.Service.LichHenService;
+import com.example.kttkpm.Service.NhanVienSuaChuaService;
 import com.example.kttkpm.dto.LichHenDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,22 +24,28 @@ public class LichHenServiceImpl implements LichHenService {
     private KhachHangRepository khachHangRepository ;
     @Autowired
     private KhachHangService khachHangService  ;
+    @Autowired
+    private NhanVienSuaChuaService nhanVienSuaChuaService ;
     @Override
     public String datlich(LichHenDTO lichHenDTO) {
-        LichHen lichHen = new LichHen() ;
-        lichHen.setNgay(lichHenDTO.getNgay());
-        lichHen.setGio(lichHenDTO.getGio());
-        lichHen.setLoinhan(lichHenDTO.getLoinhan());
-        KhachHang x = khachHangRepository.findKhachHangBySdt(lichHenDTO.getSdt()) ;
-        lichHen.setKhachHang(x);
-        lichHen = taolichhen(lichHen);
-        System.out.println(lichHen.getNgay());
-        if (lichHen != null) {
-            return "Đặt lịch hẹn thành công";
-        } else {
+        if(nhanVienSuaChuaService.checkDateAndTime(String.valueOf(lichHenDTO.getNgay()), lichHenDTO.getGio()) == true){
             return "Đặt lịch hẹn không thành công";
         }
-
+        else {
+            LichHen lichHen = new LichHen() ;
+            lichHen.setNgay(lichHenDTO.getNgay());
+            lichHen.setGio(lichHenDTO.getGio());
+            lichHen.setLoinhan(lichHenDTO.getLoinhan());
+            KhachHang x = khachHangRepository.findKhachHangBySdt(lichHenDTO.getSdt()) ;
+            lichHen.setKhachHang(x);
+            lichHen = taolichhen(lichHen);
+            System.out.println(lichHen.getNgay());
+            if (lichHen != null) {
+                return "Đặt lịch hẹn thành công";
+            } else {
+                return "Đặt lịch hẹn không thành công";
+            }
+        }
     }
     private LichHen taolichhen(LichHen lichHen){
         lichHenRepository.save(lichHen)  ;

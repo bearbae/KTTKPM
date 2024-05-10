@@ -17,6 +17,8 @@ public interface HoaDonNhapRepository extends JpaRepository<HoaDonNhap, Long> {
 
     HoaDonNhap getHoaDonNhapById(long id) ;
 
+    List<HoaDonNhap> findHoaDonNhapsByTaiKhoan_Id(long id) ;
+
     Optional<HoaDonNhap> findHoaDonNhapById(long id) ;
 
 

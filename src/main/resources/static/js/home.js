@@ -16,27 +16,33 @@ if (!kh || Object.keys(kh).length === 0) {
         document.addEventListener("DOMContentLoaded", function() {
             // in thong tin hoa don
             const ListHD = document.getElementById("ListHD");
-
             const HDInfor = document.getElementById("HDInfor");
             const hoadon = document.getElementById("hoadon");
             var kh = JSON.parse(localStorage.getItem('kh'));
             let HDArr = [];
-
-            fetch(`http://localhost:8080/api/hdn/idhd/${hdn.id}`)
+            let HDSaveId;
+            let id_kh  = kh.id ;
+            // hien thi danhs sach hoa don
+            function renderListHD() {
+                // xóa ds hiện có
+                ListHD.innerHTML = "";
+                // Trả về danh sách HD
+                HDArr.forEach(hd => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = hd.nhaCungCap.ten;
+                    listItem.dataset.id = hd.id;
+                    listItem.addEventListener("click", () => {
+                        HDSaveId = hd.id;
+                        showInfoHD(hd);
+                    });
+                    ListHD.appendChild(listItem);
+                });
+            }
+            fetch(`http://localhost:8080/api/hdn/idhd/${id_kh}`)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
-                    // Lưu data được trả về
-                    // Trả về danh sach dịch hẹn
-                    const listItem = document.createElement("li");
-                    listItem.textContent = data.nhaCungCap.ten;
-                    // listItem.dataset.id = data.id;
-                    listItem.addEventListener("click", () => {
-
-                        showInfoHD(data);
-                    });
-                    ListHD.appendChild(listItem) ;
-
+                    HDArr = data ;
+                    renderListHD() ;
                 })
                 .catch(error => console.error("Error fetching data:", error));
 
@@ -44,17 +50,14 @@ if (!kh || Object.keys(kh).length === 0) {
                 HDInfor.innerHTML = `
             <p>Nhà Cung Cấp: ${hd.nhaCungCap.ten}</p>
             <p>Ngày: ${hd.ngay}</p>
-            <p>Tổng Tiền: ${hd.thanhtien} $</p>
-        
-            
-            
+            <p>Tổng Tiền: ${hd.thanhtien} $</p> 
         `;
-
                 hoadon.style.display = "block";
             }
             closeHoaDon.addEventListener("click", () => {
                 hoadon.style.display = "none";
             });
+
         });
     }
     else if(result === "0"){
@@ -123,8 +126,5 @@ if (!kh || Object.keys(kh).length === 0) {
         closeModal.addEventListener("click", () => {
             modal.style.display = "none";
         });
-
-
-
 
     });

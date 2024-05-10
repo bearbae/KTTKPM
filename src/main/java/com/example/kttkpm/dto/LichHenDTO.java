@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class LichHenDTO {
 
     private Long id  ;
-    private LocalDate ngay ;
+    private String ngay ;
     private String gio ;
     private String loinhan ;
     private String sdt ;

@@ -27,23 +27,38 @@ public class HoaDonNhapServiceImpl implements HoaDonNHapService {
     @Autowired
     private NhaCungCapService nhaCungCapService ;
     @Override
-    public String taoHoaDon(HoaDonNhapDTO hoaDonNhapDTO) {
+    public HoaDonNhapDTO taoHoaDon(HoaDonNhapDTO hoaDonNhapDTO) {
         HoaDonNhap hoaDonNhap = new HoaDonNhap() ;
         NhaCungCap x = nhaCungCapService.getNccById(hoaDonNhapDTO.getId_ncc()) ;
         TaiKhoan y = authService.getTaiKhoanById(hoaDonNhapDTO.getId_tk()) ;
         hoaDonNhap.setNhaCungCap(x);
         hoaDonNhap.setTaiKhoan(y);
         hoaDonNhap = hoaDonNhapRepository.save(hoaDonNhap)  ;
-        if(hoaDonNhap != null) {
-            return "oke" ;
+//        if(hoaDonNhap != null) {
+//            return "oke" ;
+//        }
+//        else return "Not ok" ;
+        HoaDonNhapDTO rs = new HoaDonNhapDTO() ;
+        if(hoaDonNhap != null){
+            rs.setId(hoaDonNhap.getId());
+            rs.setId_tk(hoaDonNhap.getTaiKhoan().getId());
+            return  rs ;
         }
-        else return "Not ok" ;
+        else{
+            return null ;
+        }
+    }
+
+    @Override
+    public List<HoaDonNhap> findListHDNById_tk(long id) {
+        List<HoaDonNhap> y = hoaDonNhapRepository.findHoaDonNhapsByTaiKhoan_Id(id);
+        return y;
     }
 
     @Override
     public HoaDonNhap findHDNById(long id) {
-        HoaDonNhap y = hoaDonNhapRepository.getHoaDonNhapById(id);
-        return y;
+        HoaDonNhap x = hoaDonNhapRepository.getHoaDonNhapById(id) ;
+        return x ;
     }
 
     @Override

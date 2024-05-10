@@ -10,6 +10,8 @@
 
 <body>
 <div class="container">
+  <button  id="taohoadon">Tạo Hóa Đơn</button>
+
 <!--  <form id="nhapphutung">-->
   <h2>Tìm Phụ Tùng</h2>
   <label for="tenpt">Nhập Tên Phụ Tùng:</label>
@@ -41,9 +43,21 @@
 
     <div style=" display: flex ; justify-content: space-around">
       <button type="button"  style="width: 85px;
-            height: 30px;" id="confirm">Xác Nhận</button>
+            height: 30px;" id="NPT">Xác Nhận</button>
     </div>
 
+    <table id="hoadontable">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tên Phụ Tùng</th>
+        <th>Mô Tả</th>
+        <th>Số Lượng</th>
+        <th>Giá($)</th>
+      </tr>
+      </thead>
+      <tbody id="ptung"></tbody>
+    </table>
     <button onclick="xong()"  style="width: 85px;
             height: 30px;" id="done" >Xong</button>
 

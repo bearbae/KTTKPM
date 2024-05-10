@@ -66,16 +66,16 @@ function chon(button){
                 })
             .then(data => {
                 if(data){
-                    var ncc = {
+                    const ncc = {
                         id: Idncc,
                         ten: data.ten,
                         sdt: data.sdt,
                         dchi: data.dchi
-                    }
+                    };
                     localStorage.setItem('ncc', JSON.stringify(ncc)) ;
                     alert("Nhà Cung Cấp: " + data.ten) ;
 
-                    window.location.href =('/hoadonnhap') ;
+                    window.location.href =('/phutung') ;
                 }
                 else alert("Khong tim thay!") ;
 

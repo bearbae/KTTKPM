@@ -23,7 +23,7 @@ public class LichHen {
         private Long id;
 
         @Column(name = "ngay")
-        private LocalDate ngay;
+        private String ngay;
 
         @Column(name = "gio")
         private String gio;

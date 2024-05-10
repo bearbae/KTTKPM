@@ -20,9 +20,9 @@ public class HoaDonNhapController {
     @Autowired
     private HoaDonNHapService hoaDonNHapService ;
     @PostMapping("/taohd")
-    public ResponseEntity<String> taoHoaDonNhap(@RequestBody  HoaDonNhapDTO hoaDonNhapDTO){
-        String response = hoaDonNHapService.taoHoaDon(hoaDonNhapDTO) ;
-        return new ResponseEntity<>(response, HttpStatus.CREATED) ;
+    public ResponseEntity<HoaDonNhapDTO> taoHoaDonNhap(@RequestBody  HoaDonNhapDTO hoaDonNhapDTO){
+        HoaDonNhapDTO response = hoaDonNHapService.taoHoaDon(hoaDonNhapDTO) ;
+        return  ResponseEntity.ok(response) ;
     }
 
 
@@ -39,8 +39,8 @@ public class HoaDonNhapController {
     }
 
     @GetMapping("/idhd/{id}")
-    public ResponseEntity<HoaDonNhap> findHoaDonNhap(@PathVariable long id){
-        HoaDonNhap x  = hoaDonNHapService.findHDNById(id) ;
+    public ResponseEntity<List<HoaDonNhap>> findListHoaDonNhap(@PathVariable long id){
+        List<HoaDonNhap> x  = hoaDonNHapService.findListHDNById_tk(id) ;
         return ResponseEntity.ok(x) ;
     }
 
