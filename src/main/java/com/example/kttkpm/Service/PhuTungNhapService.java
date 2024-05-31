@@ -12,7 +12,9 @@ import java.util.List;
 
 
 public interface PhuTungNhapService {
-    String nhapPhuTung(PhuTungNhapDTO PhuTungDTO) ;
+    PhuTungNhap nhapPhuTung(PhuTungNhapDTO PhuTungDTO) ;
 
     List<PhuTungNhap>  getPtByIdHd(long idhdn ) ;
+
+    boolean deletePtnById(long id) ;
 }

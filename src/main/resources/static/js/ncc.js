@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+
+
     const btnTim = document.getElementById("tim") ;
 
-    // Lời gọi API fetch để lấy thông tin nhà cung cấp
+//  lấy thông tin nhà cung cấp
     btnTim.addEventListener("click", function (){
 
             let tenncc = document.getElementById("supplierName").value;
@@ -16,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data)
+                    console.log(data);
                     if(data){
                         renderNcc(data)  ;
                     }
@@ -31,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 
-        // in thong tin ncc
+// in thong tin ncc
     function renderNcc(InforNcc){
         const tableBody = document.getElementById("supplierTableBody");
         tableBody.innerHTML = ""  ;
@@ -50,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         });
     }
+
 }) ;
 
 function chon(button){
@@ -84,9 +87,5 @@ function chon(button){
                 console.error("Error:", error);
                 alert("Nhập thông tin cần tìm. Hãy thử lại!");
                 }) ;
-
-    // }) ;
-
-
-
 }
+

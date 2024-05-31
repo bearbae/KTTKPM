@@ -115,6 +115,7 @@
                     localStorage.removeItem('ncc');
                     localStorage.removeItem('hdn');
                     localStorage.removeItem('listptn');
+                    localStorage.removeItem('addpt');
                     window.location.href = "/home"
                 }
             })
@@ -124,8 +125,6 @@
             });
 
     });
-
-
 
 
     var huyButton = document.getElementById("huy");

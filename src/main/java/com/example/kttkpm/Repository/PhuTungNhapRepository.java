@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface PhuTungNhapRepository extends JpaRepository<PhuTungNhap, Long> {
     List<PhuTungNhap> findPhuTungNhapsByHoaDonNhapId(long id) ;
+//    void deleteById(long id) ;
 }

@@ -29,7 +29,7 @@ document.getElementById("lichhenForm").addEventListener("submit", function(event
             if (data === "Đặt lịch hẹn không thành công") {
                 alert(data); // Hiển thị thông báo lỗi
             } else {
-                alert("đặt thành công"); // Hiển thị thông báo thành công
+                alert("Lịch hẹn đã được đặt thành công"); // Hiển thị thông báo thành công
                 // Chuyển hướng người dùng đến trang chủ
                 window.location.href = "/home"
             }
@@ -49,8 +49,6 @@ if (!kh || Object.keys(kh).length === 0) {
     // Nếu userInfo trống, chuyển hướng đến trang home
     window.location.href = "home";
 } else {
-    // Hiển thị thông tin người dùng trong trang
-
     document.getElementById('hoten').value =  kh.hoten;
     document.getElementById('sdt').value =  kh.sdt;
     document.getElementById('dchi').value =  kh.dchi;

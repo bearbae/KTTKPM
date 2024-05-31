@@ -19,28 +19,44 @@ import java.util.List;
 public class PhuTungNhapServiceImpl implements PhuTungNhapService {
 
     @Autowired
-    private  PhuTungService phuTungService ;
+    private PhuTungService phuTungService;
     @Autowired
-    private HoaDonNHapService hoaDonNHapService ;
+    private HoaDonNHapService hoaDonNHapService;
     @Autowired
-    private PhuTungNhapRepository phuTungNhapRepository ;
+    private PhuTungNhapRepository phuTungNhapRepository;
+
     @Override
-    public String nhapPhuTung(PhuTungNhapDTO phuTungDTO) {
-        PhuTungNhap x = new PhuTungNhap() ;
+    public PhuTungNhap nhapPhuTung(PhuTungNhapDTO phuTungDTO) {
+        PhuTungNhap x = new PhuTungNhap();
         x.setGia(phuTungDTO.getGia());
         x.setSoluong(phuTungDTO.getSoluong());
         x.setPhuTung(phuTungService.getPhuTungById(phuTungDTO.getIdpt()));
         x.setHoaDonNhap(hoaDonNHapService.findHDNById(phuTungDTO.getIdhdn()));
-        x = phuTungNhapRepository.save(x) ;
-        if(x != null){
-            return "Nhap phu tung thanh cong" ;
-        }
-        else
-            return "Nhap phu tung khong thanh cong";
+        x = phuTungNhapRepository.save(x);
+        PhuTungNhap phuTungNhap = new PhuTungNhap();
+
+        if (x != null) {
+            phuTungNhap.setId(x.getId());
+            phuTungNhap.setGia(x.getGia());
+            phuTungNhap.setSoluong(x.getSoluong());
+            phuTungNhap.setPhuTung(x.getPhuTung());
+            phuTungNhap.setHoaDonNhap(x.getHoaDonNhap());
+            return phuTungNhap;
+        } else
+            return null;
     }
 
     @Override
     public List<PhuTungNhap> getPtByIdHd(long idhdn) {
         return phuTungNhapRepository.findPhuTungNhapsByHoaDonNhapId(idhdn);
+    }
+
+    @Override
+    public boolean deletePtnById(long id) {
+        if (phuTungNhapRepository.existsById(id)) {
+            phuTungNhapRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

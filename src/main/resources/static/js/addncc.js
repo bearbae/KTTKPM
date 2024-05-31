@@ -30,7 +30,7 @@ document.getElementById("addncc").addEventListener("submit", function(event) {
             if (data === "khong") {
                 alert(data);
             } else {
-                alert("Thêm thành công");
+                alert("Thêm Nhà Cung Cấp Thành Công");
 
                 window.location.href = "/ncc"
             }

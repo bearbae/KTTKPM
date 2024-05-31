@@ -1,10 +1,9 @@
-
-
-document.addEventListener("DOMContentLoaded", function() {
+//
+// document.addEventListener("DOMContentLoaded", function() {
     var ncc = JSON.parse(localStorage.getItem('ncc'));
     var kh = JSON.parse(localStorage.getItem('kh'));
 
-    // tao hoa don
+// tao hoa don
     var taohoadon = document.getElementById("taohoadon") ;
     var id_hoadon = null ;
     taohoadon.addEventListener("click", function (){
@@ -57,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const btnTim = document.getElementById("timPt") ;
 
     var phutungId = null ;
-    // Lời gọi API fetch để lấy thông tin Phụ Tùng
+// để lấy thông tin Phụ Tùng
     btnTim.addEventListener("click", function (){
 
         let tenpt = document.getElementById("tenpt").value;
@@ -87,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 
-    // in thong tin pt
+// in thong tin pt
     function renderPt(pt){
         const tableBody = document.getElementById("PhuTungTableBody");
         tableBody.innerHTML = ""  ;
@@ -133,16 +132,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.text();
+                return response.json();
             })
             .then(data => {
 
-                if (data === "Nhap phu tung khong thanh cong") {
-                    alert(data);
-                } else {
+                if (data) {
+                    addpt() ;
                     alert("Nhập phụ tùng thành công");
+                    window.location.href = "/phutung" ;
+                } else {
 
-                    window.location.href = "/phutung"
+                    alert("Nhập phụ tùng không thành công");
+                    // window.location.href = "/phutung" ;
                 }
             })
             .catch(error => {
@@ -150,6 +151,31 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert("An error occurred. Please try again later.");
             });
     });
+
+// lây phu tung da nhap hien len tren trang pt
+    function addpt(){
+        fetch(`http://localhost:8080/api/npt/idhdn/${hdn.id}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // console.log(data.phuTung.tenpt)
+                if(data){
+                    localStorage.setItem('addpt', JSON.stringify(data)) ;
+                    console.log(data);
+                }
+                else {
+                    alert("Không có !") ;
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Nhập thông tin cần tìm. Hãy thử lại!");
+            });
+    };
 
 
 
@@ -184,8 +210,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 
-    var ptn = JSON.parse(localStorage.getItem('listptn'));
-    console.log(ptn) ;
+    var ptn = JSON.parse(localStorage.getItem('addpt'));
+    // console.log(ptn) ;
 
     function  renderPhuTungNhap(Listptn){
         var tongtien = 0 ;
@@ -206,15 +232,46 @@ document.addEventListener("DOMContentLoaded", function() {
                     <td >${ptn.phuTung.mota}</td>
                     <td>${ptn.soluong}</td>
                     <td>${ptn.gia}</td>
+                    <td>
+                        <button id="deleteptn"  onclick="xoa(this)" data-idptn="${ptn.id}" >Xóa</button>
+                    </td>
                 `;
             tableBody.appendChild(row);
         })
     }
     renderPhuTungNhap(ptn)  ;
 
+// }) ;
+
+function xoa(button){
+    const id_ptn = button.dataset.idptn;
+    let ValueIdptn = parseInt(id_ptn);
+    fetch(`http://localhost:8080/api/npt/delete/${ValueIdptn}`,{
+        method: 'DELETE'
+    })
+
+        .then(Response => {
+            if (!Response.ok) {
+                throw new Error('Error');
+            }
+            return Response.text();
+        })
+        .then(data => {
+            if (data === "true") {
+                alert("Xóa Thành Công");
+                ptn = ptn.filter(item => item.id !== ValueIdptn);
+                localStorage.setItem('addpt',JSON.stringify(ptn)) ;
+                window.location.href = ('/phutung');
+
+            } else alert("Xóa Thất bại");
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Xóa thất bại. Hãy thử lại!");
+        });
+}
 
 
 
 
-}) ;
 

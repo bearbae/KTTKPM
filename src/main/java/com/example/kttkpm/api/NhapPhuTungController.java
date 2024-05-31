@@ -19,14 +19,19 @@ public class NhapPhuTungController {
     private PhuTungNhapService phuTungNhapService ;
 
     @PostMapping("/nhap")
-    public ResponseEntity<String> nhapPhuTung(@RequestBody PhuTungNhapDTO phuTungNhapDTO){
-        String response = phuTungNhapService.nhapPhuTung(phuTungNhapDTO) ;
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    public ResponseEntity<PhuTungNhap> nhapPhuTung(@RequestBody PhuTungNhapDTO phuTungNhapDTO){
+        PhuTungNhap phuTungNhap = phuTungNhapService.nhapPhuTung(phuTungNhapDTO) ;
+        return  ResponseEntity.ok(phuTungNhap);
     }
 
     @GetMapping("/idhdn/{idhdn}")
     public ResponseEntity<List<PhuTungNhap>> getAllPhuTung(@PathVariable long idhdn){
         List<PhuTungNhap> phuTungNhaps = phuTungNhapService.getPtByIdHd(idhdn) ;
         return ResponseEntity.ok(phuTungNhaps) ;
+    }
+    @DeleteMapping("/delete/{id}")
+    public  boolean deletePhuTungNhap(@PathVariable long id){
+        boolean rs = phuTungNhapService.deletePtnById(id) ;
+        return rs ;
     }
 }
